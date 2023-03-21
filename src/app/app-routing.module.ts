@@ -9,6 +9,11 @@ const routes: Routes = [{
       loadChildren: () =>
         import('./pages/home/home.module').then((m) => m.HomeModule),
     },
+    {
+      path: 'journal',
+      loadChildren: () =>
+        import('./pages/journal/journal.module').then((m) => m.JournalModule),
+    },
   ],
 },
 ];

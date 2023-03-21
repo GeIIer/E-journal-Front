@@ -35,6 +35,7 @@
     }
 
     .btn-close {
+      color: #fff;
       margin-left: auto;
       cursor: pointer;
       width: 2rem;
@@ -42,12 +43,6 @@
       border-radius: 50%;
       background-color: transparent;
       border: none;
-    }
-
-    .close-icon {
-      background-image: url("/assets/imgs/icon-close.png");
-      color: #fff;
-      font-size: 24px;
     }
   }
 }
@@ -98,6 +93,15 @@
       background-color: #fff;
       color: #000000;
     }
+  }
+}
+
+.active {
+  background-color: #ffffff;
+
+  .sidenav-link-icon,
+  .sidenav-link-text {
+    color: black;
   }
 }
 

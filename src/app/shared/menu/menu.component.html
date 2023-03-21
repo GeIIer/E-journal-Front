@@ -3,15 +3,19 @@
     <button class="logo" (click)="toggleCollapse()">И</button>
     <div class="logo-text" *ngIf="collapsed">Профиль</div>
     <button class="btn-close" *ngIf="collapsed" (click)="closeSidenav()">
-      <i class="close-icon"></i>
+      <i class='bx bx-menu bx-md'></i>
     </button>
   </div>
   <ul class="sidenav-nav">
     <li class="sidenav-nav-item" *ngFor="let data of navDate">
-      <a href="" class="sidenav-nav-link" [routerLink]="[data.routeLink]">
+      <a href="" class="sidenav-nav-link" [routerLink]="[data.routeLink]"
+         routerLinkActive="active"
+         [routerLinkActiveOptions]="{exact: true}"
+      >
         <i class="sidenav-link-icon" [class]="data.icon"></i>
         <span class="sidenav-link-text" *ngIf="collapsed">{{data.label}}</span>
       </a>
     </li>
   </ul>
 </div>
+
