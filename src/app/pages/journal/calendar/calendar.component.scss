@@ -1,0 +1,53 @@
+h1 {
+  font-size: 3em;
+  font-weight: 300;
+  line-height: 1em;
+  text-align: center;
+  color: #4DC3FA;
+}
+
+h2 {
+  font-size: 1em;
+  font-weight: 300;
+  text-align: center;
+  display: block;
+  line-height: 1em;
+  padding-bottom: 2em;
+  color: #FB667A;
+}
+
+h2 a {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #FB667A;
+  text-decoration: none;
+}
+
+.container th h1 {
+  font-weight: bold;
+  font-size: 1em;
+  text-align: left;
+  color: #185875;
+}
+
+.container td {
+  font-weight: normal;
+  font-size: 1em;
+  -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+  -moz-box-shadow: 0 2px 2px -2px #0E1119;
+  box-shadow: 0 2px 2px -2px #0E1119;
+}
+
+.container {
+  text-align: center;
+  overflow: hidden;
+  margin: 0 auto;
+  display: table;
+  padding: 0 0 8em 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.container td, .container th {
+  border: 2px solid #000000;
+}

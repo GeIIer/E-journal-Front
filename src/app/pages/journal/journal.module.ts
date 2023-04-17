@@ -1,11 +1,17 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { JournalComponent } from './journal.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {JournalComponent} from './journal.component';
 import {RouterModule} from "@angular/router";
+import {FormsModule} from "@angular/forms";
+import {CalendarComponent} from './calendar/calendar.component';
+import {HttpClientModule} from "@angular/common/http";
+import {CalendarCreator} from "./calendar/calendar-creator";
+import {JournalService} from "./journal.service";
 
 @NgModule({
   declarations: [
-    JournalComponent
+    JournalComponent,
+    CalendarComponent
   ],
   imports: [
     CommonModule,
@@ -15,7 +21,17 @@ import {RouterModule} from "@angular/router";
         component: JournalComponent,
       },
     ]),
+    FormsModule,
+    HttpClientModule,
   ],
-  exports: [JournalComponent],
+  providers: [
+    CalendarCreator,
+    JournalService
+  ],
+  exports: [
+    JournalComponent,
+    CalendarComponent
+  ],
 })
-export class JournalModule { }
+export class JournalModule {
+}
