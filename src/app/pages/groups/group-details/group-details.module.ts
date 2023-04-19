@@ -1,22 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SubjectsComponent } from './subjects.component';
+import {GroupDetailsComponent} from "./group-details.component";
 import {RouterModule} from "@angular/router";
+import {GroupService} from "../../../services/group.service";
 
 
 
 @NgModule({
   declarations: [
-    SubjectsComponent
+    GroupDetailsComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild([
       {
         path: '',
-        component: SubjectsComponent,
+        component: GroupDetailsComponent,
       },
     ]),
+  ],
+  providers: [
+    GroupService
   ]
 })
-export class SubjectsModule { }
+export class GroupDetailsModule { }

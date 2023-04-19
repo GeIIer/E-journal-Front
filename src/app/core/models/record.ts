@@ -1,4 +1,4 @@
-export class Record {
+export interface Record {
   id: number;
   student: number;
   date: Date;

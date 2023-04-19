@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import { navbarDate } from './nav-data';
+import { navbarDate } from '../../core/data/nav-data';
 
 interface SideNavToggle {
   screenWidth: number;

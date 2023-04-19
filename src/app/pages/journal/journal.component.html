@@ -1,19 +1,21 @@
-<body ng-controller="MyCtrl">
-Select student to get data :
-<input type="text" value="" ngModel="search" id="search"/>
-<select id="monthSel" ngModel="selMonth">
-  <option value="01">January</option>
-  <option value="02">February</option>
-  <option selected="selected" value="03">March</option>
-  <option value="04">April</option>
-  <option value="05">May</option>
-  <option value="06">June</option>
-  <option value="07">July</option>
-  <option value="08">August</option>
-  <option value="09">September</option>
-  <option value="10">October</option>
-  <option value="11">November</option>
-  <option value="12">December</option>
+<label>Выберите класс:</label>
+<select
+  class="custom-select"
+  [(ngModel)]="selectedClass"
+  (ngModelChange)="onSelectClass(selectedClass)"
+>
+  <option *ngFor="let group of groups"
+          [ngValue]="group">{{group.classNumber}} {{group.classLetter}}</option>
 </select>
-</body>
-<app-calendar [students]="students" [records]="records"></app-calendar>
+
+<label>Выберите предмет:</label>
+<select
+  class="custom-select"
+  [(ngModel)]="selectedSubject"
+  (ngModelChange)="onSelectSubject(selectedSubject)"
+>
+  <option *ngFor="let subject of subjects" [ngValue]="subject">{{subject.subjectName}}</option>
+</select>
+<div class="calendar">
+  <app-calendar *ngIf="records" [students]="students" [records]="records"></app-calendar>
+</div>

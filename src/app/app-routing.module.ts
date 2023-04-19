@@ -14,6 +14,21 @@ const routes: Routes = [{
       loadChildren: () =>
         import('./pages/journal/journal.module').then((m) => m.JournalModule),
     },
+    {
+      path: 'subjects',
+      loadChildren: () =>
+        import('./pages/subjects/subjects.module').then((m) => m.SubjectsModule),
+    },
+    {
+      path: 'groups',
+      loadChildren: () =>
+        import('./pages/groups/groups.module').then((m) => m.GroupsModule),
+    },
+    {
+      path: 'groups/:id',
+      loadChildren: () =>
+        import('./pages/groups/group-details/group-details.module').then((m) => m.GroupDetailsModule),
+    },
   ],
 },
 ];

@@ -3,7 +3,6 @@ import {Day} from "./calendar-day";
 import {CalendarCreator} from "./calendar-creator";
 import {Student} from "../../../core/models/student";
 import {Record} from "../../../core/models/record";
-import {RecordsInJournal} from "../../../core/models/recordsInJournal";
 
 @Component({
   selector: 'app-calendar',
@@ -19,10 +18,10 @@ export class CalendarComponent implements OnInit {
   public weekDaysName: string[] = [];
   @Input() columns!: any;
   @Input() students!: Student[];
-
-  @Input() records!: RecordsInJournal[];
+  @Input() records!: Map<number, Record[]>;
 
   constructor(public calendarCreator: CalendarCreator) {
+
   }
 
   ngOnInit(): void {
@@ -66,10 +65,11 @@ export class CalendarComponent implements OnInit {
   }
 
   public getListResultsByStudent(id: number): Record[] | null {
-    let data = this.records;
-    let records = data.find(elem => elem.student.id === id);
+    //let records = data.find(elem => elem.studentId === id);
+    let records = this.records.get(id);
     if (records != null) {
-      return records.records;
+      console.log(records);
+      return records;
     }
     return null;
   }
@@ -80,6 +80,7 @@ export class CalendarComponent implements OnInit {
     }
     let result = records.find(elem => elem.date.getDate() === date);
     if (result != null) {
+      console.log(result.result);
       return result.result;
     }
     return null;
@@ -94,7 +95,7 @@ export class CalendarComponent implements OnInit {
     for(let i = 0; i<this.monthDays.length; i++) {
       result.push(this.monthDays[i].number);
     }
-    console.log(result.filter((it): it is number => it !== undefined));
+    //console.log(result.filter((it): it is number => it !== undefined));
     return result.filter((it): it is number => it !== undefined);
   }
 }

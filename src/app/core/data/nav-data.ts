@@ -8,5 +8,15 @@ export const navbarDate = [
     routeLink: 'journal',
     icon: 'bx bx-book-open',
     label: 'Электронный журнал'
+  },
+  {
+    routeLink: 'groups',
+    icon: 'bx bx-group',
+    label: 'Группы'
+  },
+  {
+    routeLink: 'subjects',
+    icon: 'bx bx-book',
+    label: 'Предметы'
   }
 ];

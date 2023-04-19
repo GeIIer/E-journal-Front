@@ -6,7 +6,7 @@ import {FormsModule} from "@angular/forms";
 import {CalendarComponent} from './calendar/calendar.component';
 import {HttpClientModule} from "@angular/common/http";
 import {CalendarCreator} from "./calendar/calendar-creator";
-import {JournalService} from "./journal.service";
+import {JournalService} from "../../services/journal.service";
 
 @NgModule({
   declarations: [

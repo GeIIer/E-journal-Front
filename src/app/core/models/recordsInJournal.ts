@@ -1,7 +1,6 @@
-import {Student} from "./student";
 import {Record} from "./record";
 
-export class RecordsInJournal {
-  student: Student;
+export interface RecordsInJournal {
+  studentId: number;
   records: Record[];
 }
