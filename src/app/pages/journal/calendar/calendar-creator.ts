@@ -38,30 +38,30 @@ export class CalendarCreator {
 
   public getMonthName(monthIndex: number): string {
     switch (monthIndex) {
+      case 0:
+        return "Январь";
       case 1:
-        return "January";
+        return "Февраль";
       case 2:
-        return "February";
+        return "Март";
       case 3:
-        return "March";
+        return "Апрель";
       case 4:
-        return "April";
+        return "Май";
       case 5:
-        return "May";
+        return "Июнь";
       case 6:
-        return "June";
+        return "Июль";
       case 7:
-        return "July";
+        return "Август";
       case 8:
-        return "August";
+        return "Сентябрь";
       case 9:
-        return "September";
+        return "Октябрь";
       case 10:
-        return "October";
+        return "Ноябрь";
       case 11:
-        return "November";
-      case 12:
-        return "December";
+        return "Декабрь";
 
       default:
         return "|" + monthIndex;
@@ -103,5 +103,9 @@ export class CalendarCreator {
     day.weekDayName = this.getWeekDayName(day.weekDayNumber);
 
     return day;
+  }
+
+  public getDate(dayNumber: number, monthIndex: number, year: number): Date {
+    return new Date(year, monthIndex, dayNumber);
   }
 }

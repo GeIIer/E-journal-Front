@@ -18,7 +18,8 @@ export class CalendarComponent implements OnInit {
   public weekDaysName: string[] = [];
   @Input() columns!: any;
   @Input() students!: Student[];
-  @Input() records!: Map<number, Record[]>;
+  @Input() records!: any;
+  temp: string = "Помогите";
 
   constructor(public calendarCreator: CalendarCreator) {
 
@@ -39,8 +40,8 @@ export class CalendarComponent implements OnInit {
   onNextMonth(): void {
     this.monthNumber++;
 
-    if (this.monthNumber == 13) {
-      this.monthNumber = 1;
+    if (this.monthNumber >= 12) {
+      this.monthNumber = 0;
       this.year++;
     }
 
@@ -50,8 +51,8 @@ export class CalendarComponent implements OnInit {
   onPreviousMonth(): void {
     this.monthNumber--;
 
-    if (this.monthNumber < 1) {
-      this.monthNumber = 12;
+    if (this.monthNumber < 0) {
+      this.monthNumber = 11;
       this.year--;
     }
 
@@ -66,7 +67,7 @@ export class CalendarComponent implements OnInit {
 
   public getListResultsByStudent(id: number): Record[] | null {
     //let records = data.find(elem => elem.studentId === id);
-    let records = this.records.get(id);
+    let records = this.records[id];
     if (records != null) {
       console.log(records);
       return records;
@@ -74,11 +75,11 @@ export class CalendarComponent implements OnInit {
     return null;
   }
 
-  public getResult(records: Record[] | null, date: number): string | null {
-    if (records == null) {
+  public getResult(records: Record[] | null, date: number, mouth:number): string | null {
+    if (records === null) {
       return null;
     }
-    let result = records.find(elem => elem.date.getDate() === date);
+    let result = records.find(elem => new Date(elem.date).getMonth() === mouth && new Date(elem.date).getDay() === date);
     if (result != null) {
       console.log(result.result);
       return result.result;
@@ -86,8 +87,8 @@ export class CalendarComponent implements OnInit {
     return null;
   }
 
-  public log(val: any) {
-    console.log(val);
+  public log(val: any, val1: any, val2: any) {
+    console.log("Студент:", val, val1, val2);
   }
 
   public getDays() {
@@ -97,5 +98,11 @@ export class CalendarComponent implements OnInit {
     }
     //console.log(result.filter((it): it is number => it !== undefined));
     return result.filter((it): it is number => it !== undefined);
+  }
+
+  changeResult(student: Student, day: number, monthIndex: number, year:number, event:any) {
+    let date = new Date(year, monthIndex, day);
+    console.log(date);
+    console.log("Значение поля:", event);
   }
 }

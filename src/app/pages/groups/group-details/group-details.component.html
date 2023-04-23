@@ -1,12 +1,12 @@
 <div *ngIf="!group; else elseBlock">Я загрузка</div>
 <div *ngIf="errors;">Я сломался</div>
 <ng-template #elseBlock>
-  <h2>Группа: {{ group.classNumber }} {{ group.classLetter }}</h2>
-  <h3>Список студентов:</h3>
-  <div *ngIf="studentEmpty(); else printBlock">Студентов не завезли</div>
+  <h2>{{ group.classNumber }} {{ group.classLetter }}</h2>
+  <h3>Список учеников:</h3>
+  <div *ngIf="studentEmpty(); else printBlock">Учеников не завезли</div>
   <ng-template #printBlock>
     <ul>
-      <li *ngFor="let student of group.listStudents">
+      <li *ngFor="let student of getStudents()">
         <a routerLink="/students/{{ student.id }}">
           {{ student.lastname }} {{ student.firstname }}
         </a>

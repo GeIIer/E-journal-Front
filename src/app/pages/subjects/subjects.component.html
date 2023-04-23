@@ -1,1 +1,9 @@
-<p>subjects works!</p>
+<h2>Предметы</h2>
+<ul class="groups">
+  <li *ngFor="let subject of subjects">
+    <button [class.selected]="subject === selectedSubject" type="button" routerLink="/subjects/{{ subject.id }}">
+      <span class="badge">{{subject.subjectName}}</span>
+      <span class="name">{{subject.studyHours}}</span>
+    </button>
+  </li>
+</ul>

@@ -16,6 +16,7 @@
 >
   <option *ngFor="let subject of subjects" [ngValue]="subject">{{subject.subjectName}}</option>
 </select>
+
 <div class="calendar">
   <app-calendar *ngIf="records" [students]="students" [records]="records"></app-calendar>
 </div>

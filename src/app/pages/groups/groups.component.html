@@ -1,4 +1,4 @@
-<h2>Группы</h2>
+<h2>Классы</h2>
 <ul class="groups">
   <li *ngFor="let group of groups">
     <button [class.selected]="group === selectedGroup" type="button" routerLink="/groups/{{ group.id }}">

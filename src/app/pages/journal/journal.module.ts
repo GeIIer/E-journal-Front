@@ -11,7 +11,7 @@ import {JournalService} from "../../services/journal.service";
 @NgModule({
   declarations: [
     JournalComponent,
-    CalendarComponent
+    CalendarComponent,
   ],
   imports: [
     CommonModule,

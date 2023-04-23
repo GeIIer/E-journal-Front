@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SubjectsComponent } from './subjects.component';
 import {RouterModule} from "@angular/router";
+import {SubjectService} from "../../services/subject.service";
 
 
 
@@ -17,6 +18,9 @@ import {RouterModule} from "@angular/router";
         component: SubjectsComponent,
       },
     ]),
+  ],
+  providers: [
+    SubjectService
   ]
 })
 export class SubjectsModule { }

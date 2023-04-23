@@ -7,12 +7,12 @@ export const navbarDate = [
   {
     routeLink: 'journal',
     icon: 'bx bx-book-open',
-    label: 'Электронный журнал'
+    label: 'Журнал'
   },
   {
     routeLink: 'groups',
     icon: 'bx bx-group',
-    label: 'Группы'
+    label: 'Классы'
   },
   {
     routeLink: 'subjects',

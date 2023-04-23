@@ -1,34 +1,39 @@
-<H1>Журнал работает</H1>
+<div class="cal-body">
+  <H1>Журнал работает</H1>
+  <div class="cal-mouth">
+    <button class="btn-cal-btn" (click)="onPreviousMonth()"> <</button>
+    <strong> {{ calendarCreator.getMonthName(monthNumber) }} &nbsp; {{ year }} </strong>
+    <button class="btn-cal-btn" (click)="onNextMonth()"> ></button>
+  </div>
 
-<div>
-  <button (click)="onPreviousMonth()"> Previous</button>
-  <span> {{ calendarCreator.getMonthName(monthNumber) }} &nbsp; {{ year }} </span>
-  <button (click)="onNextMonth()"> Next</button>
+  <br>
+  <div class="cal-container">
+    <table class="container">
+      <thead class="table-head">
+      <tr>
+        <th>
+          Ученики
+        </th>
+        <th class="table-head-cell" *ngFor="let day of getDays()">
+          <h1>{{ day }}</h1>
+        </th>
+      </tr>
+      </thead>
+      <tbody class="table-body">
+      <tr *ngFor="let student of students">
+        <td class="first-column">
+          {{student.lastname + " " + student.firstname}}
+        </td>
+        <td class="body" *ngFor="let day of getDays()">
+          <input class="input"
+            #inputElement
+            name="record-{{student.id}}-{{day}}-{{monthNumber}}"
+            maxlength="1"
+            value="{{getResult(getListResultsByStudent(student.id), day, monthNumber)}}"
+            (change)="changeResult(student, day, monthNumber, year, inputElement.value)">
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
-
-<br>
-
-<table class="container">
-  <thead>
-  <tr>
-    <th class="table-head">
-      Ученики
-    </th>
-    <th class="table-head" *ngFor="let day of getDays()">
-      <h1>{{ day }}</h1>
-    </th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let student of students">
-    <td class="first-column">
-      {{student.lastname + " " + student.firstname}}
-    </td>
-    <td *ngFor="let day of getDays()">
-      <h3>
-        {{getResult(getListResultsByStudent(student.id), day)}}
-      </h3>
-    </td>
-  </tr>
-  </tbody>
-</table>

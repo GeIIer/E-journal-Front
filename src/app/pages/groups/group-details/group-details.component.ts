@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Group} from "../../../core/models/group";
 import {ActivatedRoute, Router} from "@angular/router";
 import {GroupService} from "../../../services/group.service";
+import {Student} from "../../../core/models/student";
 
 @Component({
   selector: 'app-group-details',
@@ -28,6 +29,14 @@ export class GroupDetailsComponent implements OnInit {
 
   goBack(): void {
     this.router.navigate(["/groups"]).then()
+  }
+
+  getStudents(): Student[] {
+    return this.group.listStudents.sort(function(a, b) {
+      var textA = a.lastname.toUpperCase();
+      var textB = b.lastname.toUpperCase();
+      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    });
   }
 
   studentEmpty(): boolean {

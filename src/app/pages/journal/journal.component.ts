@@ -37,9 +37,10 @@ export class JournalComponent implements OnInit {
     this.selectedClass = value;
     this.journalService.getStudentsByGroup(this.selectedClass.id).subscribe({
         next: (data:Student[]) => {
-          this.students = data;
-          this.students.forEach((elem) => {
-            console.log(elem.id, elem.lastname, elem.firstname);
+          this.students = data.sort(function(a, b) {
+            var textA = a.lastname.toUpperCase();
+            var textB = b.lastname.toUpperCase();
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
           });
         }
       }
@@ -49,9 +50,12 @@ export class JournalComponent implements OnInit {
 
   onSelectSubject(value: Subject) {
     this.selectedSubject = value;
-    this.journalService.getRecordsInJournal(this.selectedSubject.id, this.selectedSubject.id).subscribe({
+    this.journalService.getRecordsInJournal(this.selectedClass.id, this.selectedSubject.id).subscribe({
       next: (data) => {
-        this.records = new Map<number, Record[]>(Array.from(data, ([k,v]) => [k, v]));
+        //this.records = new Map<number, Record[]>(Array.from(data, ([k,v]) => [k, v]));
+        this.records = data;
+        console.log("Список оценок с БД:");
+        console.log(this.records);
       }
     });
     console.log(this.selectedSubject);
