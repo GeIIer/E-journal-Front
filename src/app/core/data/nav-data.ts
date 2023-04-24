@@ -18,5 +18,10 @@ export const navbarDate = [
     routeLink: 'subjects',
     icon: 'bx bx-book',
     label: 'Предметы'
+  },
+  {
+    routeLink: 'teachers',
+    icon: 'bx bxl-tux',
+    label: 'Учителя'
   }
 ];

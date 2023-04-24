@@ -1,9 +1,17 @@
-<h2>Предметы</h2>
-<ul class="groups">
-  <li *ngFor="let subject of subjects">
-    <button [class.selected]="subject === selectedSubject" type="button" routerLink="/subjects/{{ subject.id }}">
-      <span class="badge">{{subject.subjectName}}</span>
-      <span class="name">{{subject.studyHours}}</span>
-    </button>
-  </li>
-</ul>
+<div class="container">
+  <h2>Предметы</h2>
+  <div class="card-subjects">
+    <ul class="subjects">
+      <li *ngFor="let subject of subjects">
+        <button [class.selected]="subject === selectedSubject" type="button">
+          <span class="badge">{{subject.subjectName}}</span>
+          <span class="name">Учебные часы: {{subject.studyHours}}</span>
+          <span class="name">Контрольные точки: {{subject.checkpoints}}</span>
+        </button>
+        <input type="button" value="Изменить" (click)="changeSubject()" class="btn btn-success"/>
+        <input type="button" value="Удалить" (click)="deleteSubject()" class="btn btn-success"/>
+      </li>
+    </ul>
+  </div>
+  <input type="button" value="Добавить" class="btn btn-default" (click)="addSubject()"/>
+</div>

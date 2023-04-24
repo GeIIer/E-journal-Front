@@ -35,4 +35,15 @@ export class SubjectsComponent implements OnInit{
     })
   }
 
+  changeSubject() {
+
+  }
+
+  addSubject() {
+
+  }
+
+  deleteSubject() {
+
+  }
 }

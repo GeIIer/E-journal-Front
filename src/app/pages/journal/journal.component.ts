@@ -70,7 +70,6 @@ export class JournalComponent implements OnInit {
     console.log(this.selectedSubject);
   }
 
-
   checkRecords() {
     return records.length > 0;
   }

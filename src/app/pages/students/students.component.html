@@ -1,1 +1,21 @@
-<p>students works!</p>
+<div *ngIf="!student; else elseBlock">Я загрузка</div>
+<div *ngIf="errors;">Я сломался</div>
+<ng-template #elseBlock>
+  <div class="container">
+    <header class="profile-name">
+      <h2>Ученик</h2>
+      <h3>
+        <strong>{{ student.lastname }} {{ student.firstname }}</strong>
+      </h3>
+    </header>
+    <div class="email">
+      <span class="gray"> Класс: </span>
+      <span class="nowrap">{{ student.groupId }}</span>
+    </div>
+    <div class="info-container">
+      <span class="gray"> Email: </span>
+      <span class="nowrap">{{ student.email }}</span> <br>
+    </div>
+    <button (click)="goBack()">Назад</button>
+  </div>
+</ng-template>
