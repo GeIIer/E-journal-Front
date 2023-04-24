@@ -3,13 +3,16 @@ import { CommonModule } from '@angular/common';
 import { SubjectsComponent } from './subjects.component';
 import {RouterModule} from "@angular/router";
 import {SubjectService} from "../../services/subject.service";
-import {ModuleSubjectComponent} from "./module-subject/module-subject.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
+import { ModalSubjectComponent } from './modal-subject/modal-subject.component';
+import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
+import {MdbRippleModule} from "mdb-angular-ui-kit/ripple";
 
 @NgModule({
   declarations: [
     SubjectsComponent,
-    ModuleSubjectComponent,
+    ModalSubjectComponent,
   ],
   imports: [
     CommonModule,
@@ -21,6 +24,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     ]),
     FormsModule,
     ReactiveFormsModule,
+    MdbModalModule,
+    MdbFormsModule,
+    MdbRippleModule
   ],
   providers: [
     SubjectService

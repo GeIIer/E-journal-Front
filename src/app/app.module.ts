@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { MenuModule } from './shared/menu/menu.module';
 import {BodyModule} from "./shared/body/body.module";
 import {ReactiveFormsModule} from "@angular/forms";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     HttpClientModule,
     BodyModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -11,6 +11,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^15.2.0",
+    "@angular/cdk": "^15.0.0",
     "@angular/common": "^15.2.0",
     "@angular/compiler": "^15.2.0",
     "@angular/core": "^15.2.0",
@@ -18,8 +19,11 @@
     "@angular/platform-browser": "^15.2.0",
     "@angular/platform-browser-dynamic": "^15.2.0",
     "@angular/router": "^15.2.0",
+    "@fortawesome/fontawesome-free": "^6.0.0",
     "angular-rem": "^0.0.3",
     "boxicons": "^2.1.4",
+    "chart.js": "^3.1.1",
+    "mdb-angular-ui-kit": "^4.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

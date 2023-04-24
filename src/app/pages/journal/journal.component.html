@@ -1,22 +1,24 @@
-<label>Выберите класс:</label>
-<select
-  class="custom-select"
-  [(ngModel)]="selectedClass"
-  (ngModelChange)="onSelectClass(selectedClass)"
->
-  <option *ngFor="let group of groups"
-          [ngValue]="group">{{group.classNumber}} {{group.classLetter}}</option>
-</select>
+<div class="container">
+  <label>Выберите класс:</label>
+  <select
+    class="custom-select"
+    [(ngModel)]="selectedClass"
+    (ngModelChange)="onSelectClass(selectedClass)"
+  >
+    <option *ngFor="let group of groups"
+            [ngValue]="group">{{group.classNumber}} {{group.classLetter}}</option>
+  </select>
 
-<label>Выберите предмет:</label>
-<select
-  class="custom-select"
-  [(ngModel)]="selectedSubject"
-  (ngModelChange)="onSelectSubject(selectedSubject)"
->
-  <option *ngFor="let subject of subjects" [ngValue]="subject">{{subject.subjectName}}</option>
-</select>
+  <label>Выберите предмет:</label>
+  <select
+    class="custom-select"
+    [(ngModel)]="selectedSubject"
+    (ngModelChange)="onSelectSubject(selectedSubject)"
+  >
+    <option *ngFor="let subject of subjects" [ngValue]="subject">{{subject.subjectName}}</option>
+  </select>
 
-<div class="calendar">
-  <app-calendar *ngIf="records" [students]="students" [subject]="selectedSubject" [records]="records"></app-calendar>
+  <div class="calendar">
+    <app-calendar *ngIf="records" [students]="students" [subject]="selectedSubject" [records]="records"></app-calendar>
+  </div>
 </div>

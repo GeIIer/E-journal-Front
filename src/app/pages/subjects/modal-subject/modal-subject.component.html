@@ -1,0 +1,40 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="modalRef.close()"
+  ></button>
+</div>
+<div class="modal-body">
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Название предмета" aria-label="subjectName"
+           aria-describedby="basic-addon1"
+           value="{{subject.subjectName}}"
+           [(ngModel)]=subject.subjectName
+    />
+  </div>
+  <div class="input-group mb-3">
+    <input type="number" class="form-control" placeholder="Учебные часы" aria-label="studyHours"
+           aria-describedby="basic-addon1"
+           value="{{subject.studyHours}}"
+           [(ngModel)]=subject.studyHours
+    />
+  </div>
+  <div class="input-group mb-3">
+    <input type="number" class="form-control" placeholder="Контрольные точки" aria-label="checkpoints"
+           aria-describedby="basic-addon1"
+           value="{{subject.checkpoints}}"
+           [(ngModel)]=subject.checkpoints
+    />
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="close()">
+    Закрыть
+  </button>
+  <button type="button" class="btn btn-primary" (click)="save()">
+    Сохранить
+  </button>
+</div>

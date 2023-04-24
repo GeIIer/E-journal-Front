@@ -1,9 +1,11 @@
-<h2>Классы</h2>
-<ul class="groups">
-  <li *ngFor="let group of groups">
-    <button [class.selected]="group === selectedGroup" type="button" routerLink="/groups/{{ group.id }}">
-      <span class="badge">{{group.classNumber}}</span>
-      <span class="name">{{group.classLetter}}</span>
-    </button>
-  </li>
-</ul>
+<div class="container">
+  <h2>Классы</h2>
+  <ul class="groups">
+    <li *ngFor="let group of groups">
+      <button [class.selected]="group === selectedGroup" type="button" routerLink="/groups/{{ group.id }}">
+        <span class="badge">{{group.classNumber}}</span>
+        <span class="name">{{group.classLetter}}</span>
+      </button>
+    </li>
+  </ul>
+</div>
