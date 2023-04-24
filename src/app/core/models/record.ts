@@ -1,5 +1,5 @@
 export interface Record {
-  id: number;
+  id: number | null;
   student: number;
   date: Date;
   subject: string;

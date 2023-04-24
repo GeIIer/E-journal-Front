@@ -53,7 +53,16 @@ export class JournalComponent implements OnInit {
     this.journalService.getRecordsInJournal(this.selectedClass.id, this.selectedSubject.id).subscribe({
       next: (data) => {
         //this.records = new Map<number, Record[]>(Array.from(data, ([k,v]) => [k, v]));
-        this.records = data;
+        //this.records = data;
+        let dataMap = new Map(Object.entries(data));
+        console.log(dataMap);
+        let record = new Map<number, Record[]>();
+        dataMap.forEach(function (value, key, map) {
+          let num = parseInt(key);
+          let recordsArray: Record[] = map.get(key);
+          record.set(num, recordsArray);
+        })
+        this.records = record;
         console.log("Список оценок с БД:");
         console.log(this.records);
       }

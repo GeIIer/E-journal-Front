@@ -98,3 +98,10 @@ h2 a {
   font-weight: bold;
   font-size: large;
 }
+
+.btn-save {
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem
+}

@@ -24,16 +24,24 @@
         <td class="first-column">
           {{student.lastname + " " + student.firstname}}
         </td>
-        <td class="body" *ngFor="let day of getDays()">
-          <input class="input"
-            #inputElement
-            name="record-{{student.id}}-{{day}}-{{monthNumber}}"
-            maxlength="1"
-            value="{{getResult(getListResultsByStudent(student.id), day, monthNumber)}}"
-            (change)="changeResult(student, day, monthNumber, year, inputElement.value)">
-        </td>
+        <ng-container *ngIf="getListResultsByStudent(student.id) as ListResults">
+          <td class="body" *ngFor="let day of getDays()">
+            <input class="input"
+                   #inputElement
+                   name="record-{{student.id}}-{{day}}-{{monthNumber}}"
+                   maxlength="1"
+                   type="text"
+                   value="{{getResult(ListResults, day, monthNumber)}}"
+                   (change)="changeResult(student, day, monthNumber, year, inputElement.value)">
+          </td>
+        </ng-container>
       </tr>
       </tbody>
     </table>
+  </div>
+  <div class="btn-save">
+    <button (click)="save()" >
+      Сохранить
+    </button>
   </div>
 </div>

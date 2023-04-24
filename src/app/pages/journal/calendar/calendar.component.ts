@@ -3,6 +3,8 @@ import {Day} from "./calendar-day";
 import {CalendarCreator} from "./calendar-creator";
 import {Student} from "../../../core/models/student";
 import {Record} from "../../../core/models/record";
+import {records} from "../../../core/data/records.in.journal";
+import {Subject} from "../../../core/models/subject";
 
 @Component({
   selector: 'app-calendar',
@@ -17,8 +19,13 @@ export class CalendarComponent implements OnInit {
 
   public weekDaysName: string[] = [];
   @Input() columns!: any;
+  @Input() subject!: Subject;
   @Input() students!: Student[];
-  @Input() records!: any;
+  @Input() records!: Map<number, Record[]>;
+
+  changeRecords: Record[] = [];
+
+  change: boolean = false;
   temp: string = "Помогите";
 
   constructor(public calendarCreator: CalendarCreator) {
@@ -67,12 +74,13 @@ export class CalendarComponent implements OnInit {
 
   public getListResultsByStudent(id: number): Record[] | null {
     //let records = data.find(elem => elem.studentId === id);
-    let records = this.records[id];
-    if (records != null) {
-      console.log(records);
-      return records;
-    }
-    return null;
+    console.log(this.records);
+    let results = this.records?.get(id);
+     if (results != null) {
+       console.log(results);
+       return results;
+     }
+    return [];
   }
 
   public getResult(records: Record[] | null, date: number, mouth:number): string | null {
@@ -96,13 +104,27 @@ export class CalendarComponent implements OnInit {
     for(let i = 0; i<this.monthDays.length; i++) {
       result.push(this.monthDays[i].number);
     }
-    //console.log(result.filter((it): it is number => it !== undefined));
     return result.filter((it): it is number => it !== undefined);
   }
 
-  changeResult(student: Student, day: number, monthIndex: number, year:number, event:any) {
+  changeResult(student: Student, day: number, monthIndex: number, year:number, result:any) {
+    console.log("Log редактирования:");
     let date = new Date(year, monthIndex, day);
     console.log(date);
-    console.log("Значение поля:", event);
+    console.log(student.id, date, this.subject, result);
+    let record: Record = {
+      id: null,
+      student: student.id,
+      date: date,
+      subject: this.subject.id.toString(),
+      result: result!.toString()
+    }
+    this.changeRecords.push(record);
+    this.change = true;
+  }
+
+  save() {
+    console.log("Сохранение изменений");
+    console.log(this.changeRecords);
   }
 }

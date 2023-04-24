@@ -28,6 +28,6 @@ export class JournalService {
     let params = new HttpParams()
       .set('groupId', groupId.toString())
       .set('subjectId', subjectId.toString());
-    return this.http.get<Map<number, Record[]>>(this.recordUrl, {params : params});
+    return this.http.get(this.recordUrl, {params : params});
   }
 }
