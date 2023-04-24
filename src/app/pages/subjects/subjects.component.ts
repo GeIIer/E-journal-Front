@@ -12,6 +12,8 @@ export class SubjectsComponent implements OnInit{
   subjects!: Subject[];
   selectedSubject!: Subject;
   err: boolean = false;
+  edit: boolean = false;
+  addNew: boolean = false;
 
   constructor(private router: Router, private subjectService: SubjectService) {
   }
@@ -36,14 +38,23 @@ export class SubjectsComponent implements OnInit{
   }
 
   changeSubject() {
-
+    this.edit = true;
   }
 
   addSubject() {
-
+    this.addNew = true;
   }
 
-  deleteSubject() {
+  deleteSubject(id: number) {
+    this.subjectService.deleteSubject(id).subscribe( {
+      error: err1 => {
+        this.err = true;
+      }
+    });
+  }
 
+  close() {
+    this.edit = false;
+    this.addNew = false;
   }
 }

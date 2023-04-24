@@ -1,0 +1,19 @@
+<div class="backModal">
+  <div class="block">
+    <div class="formS">
+      <div class="header">{{title}}</div>
+      <form class="formS" [formGroup]="form" (submit)="confirm()" class="flex flex-col gap-4">
+        <input maxlength=16 class="inp" formControlName="name" placeholder="Name Student">
+        <input class="inp" formControlName="number" placeholder="Number">
+      </form>
+    </div>
+  </div>
+  <div class="Mbaton">
+    <button class="baton" type="submit" [ngStyle]="{'font-size': '150%', 'padding': '0px 10px', 'margin-top': '1%'}">
+      OK
+    </button>
+    <button class="baton" (click)="close()" [ngStyle]="{'font-size': '150%', 'padding': '0px 10px', 'margin-top': '1%'}">
+      CLOSE
+    </button>
+  </div>
+</div>

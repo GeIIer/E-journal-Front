@@ -7,10 +7,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuModule } from './shared/menu/menu.module';
 import {BodyModule} from "./shared/body/body.module";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -18,7 +19,7 @@ import {BodyModule} from "./shared/body/body.module";
     MenuModule,
     HttpClientModule,
     BodyModule,
-
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -27,4 +27,8 @@ export class SubjectService {
       },
       httpOptions);
   }
+
+  public deleteSubject(id:number) {
+    return this.http.delete(this.subjectUrl + "/" + id);
+  }
 }
