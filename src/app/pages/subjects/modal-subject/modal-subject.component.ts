@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {MdbModalRef} from "mdb-angular-ui-kit/modal";
-import {Subject} from "../../../core/models/subject";
 
 @Component({
   selector: 'app-modal-subject',
@@ -9,7 +8,6 @@ import {Subject} from "../../../core/models/subject";
 })
 export class ModalSubjectComponent {
   title: string | null = null;
-  subject!: Subject;
   subjectName: any;
   studyHours: any;
   checkpoints: any;
@@ -26,6 +24,11 @@ export class ModalSubjectComponent {
   }
 
   close() {
-    this.modalRef.close(this.subject);
+    this.modalRef.close();
+  }
+
+  checkNull(): boolean {
+    return this.subjectName != null && this.studyHours != null && this.checkpoints != null;
+
   }
 }

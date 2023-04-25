@@ -1,0 +1,53 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Добавить ученика</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="modalRef.close()"
+  ></button>
+</div>
+<div class="modal-body">
+  <div class="input-group mb-3">
+    <input
+      type="text" class="form-control" placeholder="Имя" aria-label="studyHours"
+      aria-describedby="basic-addon1"
+      [(ngModel)]="firstname"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <input
+      type="text" class="form-control" placeholder="Фамилия" aria-label="subjectName"
+      aria-describedby="basic-addon1"
+      [(ngModel)]="lastname"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <input
+      type="email" class="form-control" placeholder="Email" aria-label="subjectName"
+      aria-describedby="basic-addon1"
+      [(ngModel)]="email"
+    />
+  </div>
+<!--  <div class="input-group mb-3">-->
+<!--    <div class="">-->
+<!--      <label>Класс</label>-->
+<!--      <select-->
+<!--        class="form-select"-->
+<!--        aria-label="Default select example"-->
+<!--        [(ngModel)]="selectedGroup"-->
+<!--      >-->
+<!--        <option *ngFor="let group of groups"-->
+<!--                [ngValue]="group">{{group.classNumber}} {{group.classLetter}}</option>-->
+<!--      </select>-->
+<!--    </div>-->
+<!--  </div>-->
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="close()">
+    Закрыть
+  </button>
+  <button type="button" class="btn btn-primary" [disabled]="!checkNull()" (click)="save()">
+    Сохранить
+  </button>
+</div>

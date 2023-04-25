@@ -9,24 +9,24 @@
 </div>
 <div class="modal-body">
   <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Название предмета" aria-label="subjectName"
-           aria-describedby="basic-addon1"
-           value="{{subject.subjectName}}"
-           [(ngModel)]=subject.subjectName
+    <input
+      type="text" class="form-control" placeholder="Название предмета" aria-label="subjectName"
+      aria-describedby="basic-addon1"
+      [(ngModel)]="subjectName"
     />
   </div>
   <div class="input-group mb-3">
-    <input type="number" class="form-control" placeholder="Учебные часы" aria-label="studyHours"
-           aria-describedby="basic-addon1"
-           value="{{subject.studyHours}}"
-           [(ngModel)]=subject.studyHours
+    <input
+      type="number" class="form-control" placeholder="Учебные часы" aria-label="studyHours"
+      aria-describedby="basic-addon1"
+      [(ngModel)]="studyHours"
     />
   </div>
   <div class="input-group mb-3">
-    <input type="number" class="form-control" placeholder="Контрольные точки" aria-label="checkpoints"
-           aria-describedby="basic-addon1"
-           value="{{subject.checkpoints}}"
-           [(ngModel)]=subject.checkpoints
+    <input
+      type="number" class="form-control" placeholder="Контрольные точки" aria-label="checkpoints"
+      aria-describedby="basic-addon1"
+      [(ngModel)]="checkpoints"
     />
   </div>
 </div>
@@ -34,7 +34,7 @@
   <button type="button" class="btn btn-secondary" (click)="close()">
     Закрыть
   </button>
-  <button type="button" class="btn btn-primary" (click)="save()">
+  <button type="button" class="btn btn-primary" [disabled]="!checkNull()" (click)="save()">
     Сохранить
   </button>
 </div>

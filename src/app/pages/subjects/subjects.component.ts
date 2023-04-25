@@ -10,7 +10,7 @@ import {ModalSubjectComponent} from "./modal-subject/modal-subject.component";
   templateUrl: './subjects.component.html',
   styleUrls: ['./subjects.component.scss']
 })
-export class SubjectsComponent implements OnInit{
+export class SubjectsComponent implements OnInit {
   subjects!: Subject[];
   selectedSubject!: Subject;
   err: boolean = false;
@@ -33,15 +33,19 @@ export class SubjectsComponent implements OnInit{
     });
   }
 
-  createSubject(subjectName:string, studyHours: number, checkpoints: number): void {
+  createSubject(subjectName: string, studyHours: number, checkpoints: number): void {
     this.subjectService.createSubject(subjectName, studyHours, checkpoints).subscribe({
       next: value => {
         console.log(value);
       }
     })
   }
+
   deleteSubject(id: number) {
-    this.subjectService.deleteSubject(id).subscribe( {
+    this.subjectService.deleteSubject(id).subscribe({
+      next: data => {
+        this.subjects = this.subjects.filter(obj => obj.id !== id);
+      },
       error: err1 => {
         this.err = true;
       }
@@ -52,11 +56,23 @@ export class SubjectsComponent implements OnInit{
     this.modalRef = this.modalService.open(ModalSubjectComponent, {
       data: {
         title: "Редактировать предмет",
-        subject: subject,
+        subjectName: subject.subjectName,
+        studyHours: subject.studyHours,
+        checkpoints: subject.checkpoints
       }
     });
     this.modalRef.onClose.subscribe((message: any) => {
       console.log(message);
+      this.subjectService.putSubject(subject.id, message.subjectName, message.studyHours, message.checkpoints).subscribe({
+          next: (data) => {
+            let index = this.subjects.findIndex(obj => obj.id === subject.id);
+            this.subjects[index] = data;
+          },
+          error: err1 => {
+            this.err = true;
+          }
+        }
+      );
     });
   }
 
@@ -66,8 +82,17 @@ export class SubjectsComponent implements OnInit{
         title: "Добавить предмет",
       }
     });
-    this.modalRef.onClose.subscribe((message: any) => {
+    this.modalRef.onClose.subscribe((message: Subject) => {
       console.log(message);
+      this.subjectService.createSubject(message.subjectName, message.studyHours, message.checkpoints).subscribe({
+          next: (data) => {
+            this.subjects.push(data);
+          },
+          error: err1 => {
+            this.err = true;
+          }
+        }
+      );
     });
   }
 }

@@ -1,0 +1,47 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Создать класс</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="modalRef.close()"
+  ></button>
+</div>
+<div class="modal-body">
+  <div class="input-group mb-3">
+    <input
+      type="number" class="form-control" placeholder="Номер класса" aria-label="studyHours"
+      aria-describedby="basic-addon1"
+      [(ngModel)]="classNumber"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <input
+      type="text" class="form-control" placeholder="Буква класса" aria-label="subjectName"
+      aria-describedby="basic-addon1"
+      [(ngModel)]="classLetter"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <div class="">
+      <label>Классный руководитель</label>
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        placeholder="Буква класса"
+        [(ngModel)]="selectedTeacher"
+      >
+        <option *ngFor="let teacher of teachers"
+                [ngValue]="teacher">{{teacher.lastname}} {{teacher.firstname}}</option>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="close()">
+    Закрыть
+  </button>
+  <button type="button" class="btn btn-primary" [disabled]="!checkNull()" (click)="save()">
+    Сохранить
+  </button>
+</div>

@@ -28,6 +28,15 @@ export class SubjectService {
       httpOptions);
   }
 
+  public putSubject(id: number, subjectName: string, studyHours: number, checkpoints: number): Observable<any> {
+    return this.http.post<Subject>(this.subjectUrl, {
+      id: id,
+      subjectName: subjectName,
+      studyHours: studyHours,
+      checkpoints: checkpoints
+    }, httpOptions);
+  }
+
   public deleteSubject(id:number) {
     return this.http.delete(this.subjectUrl + "/" + id);
   }

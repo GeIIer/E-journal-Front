@@ -1,17 +1,28 @@
-<div *ngIf="!group; else elseBlock">Я загрузка</div>
-<div *ngIf="errors;">Я сломался</div>
-<ng-template #elseBlock>
-  <h2>{{ group.classNumber }} {{ group.classLetter }}</h2>
-  <h3>Список учеников:</h3>
-  <div *ngIf="studentEmpty(); else printBlock">Учеников не завезли</div>
-  <ng-template #printBlock>
-    <ul>
-      <li *ngFor="let student of getStudents()">
-        <a routerLink="/students/{{ student.id }}">
+<div class="container">
+  <div *ngIf="!group; else elseBlock">Я загрузка</div>
+  <div *ngIf="errors;">Я сломался</div>
+  <ng-template #elseBlock>
+    <div class="button-flex">
+      <h3>{{ group.classNumber }} {{ group.classLetter }}</h3>
+      <button type="button" class="btn btn-secondary">Редактировать</button>
+    </div>
+    <h4>Классный руководитель:</h4>
+    <a class="list-group-item list-group-item-action px-3 border-0" aria-current="true">
+      {{ group.teacher.lastname }} {{ group.teacher.firstname }}
+    </a>
+    <h4>Список учеников:</h4>
+    <div *ngIf="studentEmpty(); else printBlock">Учеников не завезли</div>
+    <ng-template #printBlock>
+      <div class="list-group list-group-light">
+        <a *ngFor="let student of getStudents()" routerLink="/students/{{ student.id }}"
+           class="list-group-item list-group-item-action px-3 border-0" aria-current="true">
           {{ student.lastname }} {{ student.firstname }}
         </a>
-      </li>
-    </ul>
+      </div>
+    </ng-template>
+    <input type="button" value="Добавить" class="btn btn-add" (click)="openModalAddNew(group.id)"/>
   </ng-template>
-  <button (click)="goBack()">Назад</button>
-</ng-template>
+  <div class="container-fluid">
+    <input type="button" value="Назать" class="btn btn-add" (click)="goBack()"/>
+  </div>
+</div>
