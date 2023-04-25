@@ -5,6 +5,7 @@ import {Student} from "../../../core/models/student";
 import {Record} from "../../../core/models/record";
 import {records} from "../../../core/data/records.in.journal";
 import {Subject} from "../../../core/models/subject";
+import {JournalService} from "../../../services/journal.service";
 
 @Component({
   selector: 'app-calendar',
@@ -27,8 +28,9 @@ export class CalendarComponent implements OnInit {
 
   change: boolean = false;
   temp: string = "Помогите";
+  private error: boolean = false;
 
-  constructor(public calendarCreator: CalendarCreator) {
+  constructor(public calendarCreator: CalendarCreator, private journalService:JournalService) {
 
   }
 
@@ -126,5 +128,13 @@ export class CalendarComponent implements OnInit {
   save() {
     console.log("Сохранение изменений");
     console.log(this.changeRecords);
+    this.journalService.saveRecords(this.changeRecords).subscribe({
+      next: data => {
+        console.log(data);
+      },
+      error: err => {
+        this.error = true;
+      }
+    })
   }
 }

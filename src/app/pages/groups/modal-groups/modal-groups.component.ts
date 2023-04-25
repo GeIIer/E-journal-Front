@@ -23,7 +23,7 @@ export class ModalGroupsComponent {
     let newGroup = {
       classNumber: this.classNumber,
       classLetter: this.classLetter,
-      teacherId: this.selectedTeacher.id,
+      teacher: this.selectedTeacher,
     }
     this.modalRef.close(newGroup);
   }

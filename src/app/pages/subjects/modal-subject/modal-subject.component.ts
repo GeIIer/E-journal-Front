@@ -29,6 +29,5 @@ export class ModalSubjectComponent {
 
   checkNull(): boolean {
     return this.subjectName != null && this.studyHours != null && this.checkpoints != null;
-
   }
 }

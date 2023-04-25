@@ -1,10 +1,13 @@
 import {Injectable} from "@angular/core";
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {Student} from "../core/models/student";
 import {GroupsAndSubjects} from "../core/models/groupsAndSubjects";
-import {RecordsInJournal} from "../core/models/recordsInJournal";
 import {Record} from "../core/models/record";
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
 
 @Injectable()
 export class JournalService {
@@ -28,6 +31,10 @@ export class JournalService {
     let params = new HttpParams()
       .set('groupId', groupId.toString())
       .set('subjectId', subjectId.toString());
-    return this.http.get(this.recordUrl, {params : params});
+    return this.http.get(this.recordUrl, {params: params});
+  }
+
+  public saveRecords(records: Record[]) {
+    return this.http.post(this.recordUrl, records, httpOptions);
   }
 }

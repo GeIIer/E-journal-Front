@@ -14,10 +14,14 @@
     <div *ngIf="studentEmpty(); else printBlock">Учеников не завезли</div>
     <ng-template #printBlock>
       <div class="list-group list-group-light">
-        <a *ngFor="let student of getStudents()" routerLink="/students/{{ student.id }}"
-           class="list-group-item list-group-item-action px-3 border-0" aria-current="true">
-          {{ student.lastname }} {{ student.firstname }}
-        </a>
+        <div *ngFor="let student of getStudents()"
+             class="list-group-item list-group-item-action px-3 border-0" aria-current="true"
+        >
+          <a routerLink="/students/{{ student.id }}">{{ student.lastname }} {{ student.firstname }}</a>
+          <div class="text-muted">{{student.email}}</div>
+          <input type="button" value="Удалить" (click)="deleteStudent(student.id)" class="btn btn-outline-danger"
+                 mdbRipple rippleColor="dark"/>
+        </div>
       </div>
     </ng-template>
     <input type="button" value="Добавить" class="btn btn-add" (click)="openModalAddNew(group.id)"/>

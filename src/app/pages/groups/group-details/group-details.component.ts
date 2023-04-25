@@ -80,4 +80,15 @@ export class GroupDetailsComponent implements OnInit {
     var textB = b.lastname.toUpperCase();
     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
   }
+
+  deleteStudent(id: number) {
+    this.studentService.deleteStudent(id).subscribe({
+      next: data => {
+        this.group.listStudents = this.group.listStudents.filter(obj => obj.id !== id);
+      },
+      error: err => {
+        this.errors = true;
+      }
+    });
+  }
 }

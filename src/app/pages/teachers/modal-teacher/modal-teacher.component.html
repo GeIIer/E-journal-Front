@@ -1,0 +1,67 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Добавить учителя</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="modalRef.close()"
+  ></button>
+</div>
+<div class="modal-body">
+  <div class="input-group mb-3">
+    <input
+      type="text" class="form-control" placeholder="Имя" aria-label="studyHours"
+      aria-describedby="basic-addon1"
+      [(ngModel)]="firstname"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <input
+      type="text" class="form-control" placeholder="Фамилия" aria-label="subjectName"
+      aria-describedby="basic-addon1"
+      [(ngModel)]="lastname"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <input
+      type="email" class="form-control" placeholder="Email" aria-label="subjectName"
+      aria-describedby="basic-addon1"
+      [(ngModel)]="email"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <input
+      type="number" class="form-control" placeholder="Стаж" aria-label="studyHours"
+      aria-describedby="basic-addon1"
+      [(ngModel)]="experience"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <input
+      type="number" class="form-control" placeholder="Оклад" aria-label="checkpoints"
+      aria-describedby="basic-addon1"
+      [(ngModel)]="salary"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <label>Предметы</label>
+    <br>
+    <select
+      class="form-select"
+      aria-label="Default select example"
+      [multiple]="selectedSubjects"
+      [(ngModel)]="selectedSubjects"
+    >
+      <option *ngFor="let subject of subjects"
+              [ngValue]="subject">{{subject.subjectName}}</option>
+    </select>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="close()">
+    Закрыть
+  </button>
+  <button type="button" class="btn btn-primary" [disabled]="!checkNull()" (click)="save()">
+    Сохранить
+  </button>
+</div>

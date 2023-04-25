@@ -46,12 +46,13 @@ export class GroupsComponent implements OnInit {
           }
         });
         this.modalRef.onClose.subscribe(data => {
-          this.groupService.createGroup(data.classNumber, data.classLetter, data.teacherId).subscribe({
+          this.groupService.createGroup(data.classNumber, data.classLetter, data.teacher).subscribe({
             next: group => {
+              console.log(group);
               this.groups.push(group);
-              console.log(this.groups);
             },
             error: err1 => {
+              console.log(this.groups);
               this.err = true;
             }
           });
@@ -71,6 +72,6 @@ export class GroupsComponent implements OnInit {
       error: err1 => {
         this.err = true;
       }
-    })
+    });
   }
 }

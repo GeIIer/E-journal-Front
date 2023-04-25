@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {Group} from "../core/models/group";
+import {Teacher} from "../core/models/teacher";
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -20,11 +21,11 @@ export class GroupService {
     return this.http.get<Group>(this.groupUrl + "/" + id);
   }
 
-  createGroup(classNumber:number, classLetter: string, teacherId: number) {
+  createGroup(classNumber:number, classLetter: string, teacher: Teacher) {
     return this.http.post<Group>(this.groupUrl, {
       classNumber: classNumber,
       classLetter: classLetter,
-      teacherId: teacherId
+      teacher: teacher
     },httpOptions);
   }
 
