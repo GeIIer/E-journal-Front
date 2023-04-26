@@ -74,4 +74,8 @@ export class GroupsComponent implements OnInit {
       }
     });
   }
+
+  groupsEmpty() {
+    return (this.groups.length === 0);
+  }
 }

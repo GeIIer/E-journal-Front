@@ -4,12 +4,12 @@
   <ng-template #elseBlock>
     <div class="button-flex">
       <h3>{{ group.classNumber }} {{ group.classLetter }}</h3>
-      <button type="button" class="btn btn-secondary">Редактировать</button>
+      <button type="button" class="btn btn-secondary" (click)="openModalChange(group)">Редактировать </button>
     </div>
     <h4>Классный руководитель:</h4>
-    <a class="list-group-item list-group-item-action px-3 border-0" aria-current="true">
+    <h6 class="list-group-item list-group-item-action px-3 border-0" aria-current="true">
       {{ group.teacher.lastname }} {{ group.teacher.firstname }}
-    </a>
+    </h6>
     <h4>Список учеников:</h4>
     <div *ngIf="studentEmpty(); else printBlock">Учеников не завезли</div>
     <ng-template #printBlock>
@@ -17,7 +17,7 @@
         <div *ngFor="let student of getStudents()"
              class="list-group-item list-group-item-action px-3 border-0" aria-current="true"
         >
-          <a routerLink="/students/{{ student.id }}">{{ student.lastname }} {{ student.firstname }}</a>
+          <h6 routerLink="/students/{{ student.id }}">{{ student.lastname }} {{ student.firstname }}</h6>
           <div class="text-muted">{{student.email}}</div>
           <input type="button" value="Удалить" (click)="deleteStudent(student.id)" class="btn btn-outline-danger"
                  mdbRipple rippleColor="dark"/>

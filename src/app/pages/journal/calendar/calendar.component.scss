@@ -54,7 +54,8 @@ h2 a {
 
 .body {
   display: table-cell;
-  max-width: 0px;
+  //aaaaa
+  max-width: 0;
   border: 1px solid gray;
   width: 10px;
 }
@@ -70,6 +71,7 @@ h2 a {
   .btn-cal-btn {
     font-weight: 500;
     color: black;
+    width: 50px;
   }
 }
 

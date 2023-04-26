@@ -7,9 +7,10 @@
     <ng-template #printBlock>
       <div class="list-group list-group-light">
         <div *ngFor="let teacher of teachers"
-           class="list-group-item list-group-item-action px-3 border-0" aria-current="true"
+             class="list-group-item list-group-item-action px-3 border-0"
+             aria-current="true"
         >
-          <a routerLink="/teachers/{{ teacher.id }}">{{ teacher.lastname }} {{ teacher.firstname }}</a>
+          <h5 routerLink="/teachers/{{ teacher.id }}">{{ teacher.lastname }} {{ teacher.firstname }}</h5>
           <div class="text-muted">{{teacher.email}}</div>
           <input type="button" value="Удалить" (click)="deleteTeacher(teacher.id)" class="btn btn-outline-danger"
                  mdbRipple rippleColor="dark"/>

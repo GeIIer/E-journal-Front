@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {Group} from "../core/models/group";
 import {Teacher} from "../core/models/teacher";
+import {Student} from "../core/models/student";
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -26,6 +27,16 @@ export class GroupService {
       classNumber: classNumber,
       classLetter: classLetter,
       teacher: teacher
+    },httpOptions);
+  }
+
+  putGroup(id: number, classNumber:number, classLetter: string, teacher: Teacher, listStudents: Student[]) {
+    return this.http.put<Group>(this.groupUrl, {
+      id: id,
+      classNumber: classNumber,
+      classLetter: classLetter,
+      teacher: teacher,
+      listStudents: listStudents
     },httpOptions);
   }
 

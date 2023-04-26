@@ -1,5 +1,6 @@
 <div class="container">
-  <label>Выберите класс:</label>
+  <H2>Журнал успеваемости</H2>
+  <h6>Выберите класс: </h6>
   <select
     class="custom-select"
     [(ngModel)]="selectedClass"
@@ -9,7 +10,7 @@
             [ngValue]="group">{{group.classNumber}} {{group.classLetter}}</option>
   </select>
 <br>
-  <label>Выберите предмет:</label>
+  <h6>Выберите предмет: </h6>
   <select
     class="custom-select"
     [(ngModel)]="selectedSubject"
@@ -17,8 +18,8 @@
   >
     <option *ngFor="let subject of subjects" [ngValue]="subject">{{subject.subjectName}}</option>
   </select>
-
+<br>
   <div class="calendar">
-    <app-calendar *ngIf="records" [students]="students" [subject]="selectedSubject" [records]="records"></app-calendar>
+    <app-calendar *ngIf="records" [students]="students" [group]="selectedClass" [subject]="selectedSubject" [records]="records"></app-calendar>
   </div>
 </div>

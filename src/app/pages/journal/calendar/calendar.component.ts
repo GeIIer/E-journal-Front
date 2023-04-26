@@ -3,9 +3,9 @@ import {Day} from "./calendar-day";
 import {CalendarCreator} from "./calendar-creator";
 import {Student} from "../../../core/models/student";
 import {Record} from "../../../core/models/record";
-import {records} from "../../../core/data/records.in.journal";
 import {Subject} from "../../../core/models/subject";
 import {JournalService} from "../../../services/journal.service";
+import {Group} from "../../../core/models/group";
 
 @Component({
   selector: 'app-calendar',
@@ -21,6 +21,7 @@ export class CalendarComponent implements OnInit {
   public weekDaysName: string[] = [];
   @Input() columns!: any;
   @Input() subject!: Subject;
+  @Input() group!: Group;
   @Input() students!: Student[];
   @Input() records!: Map<number, Record[]>;
 
@@ -89,7 +90,7 @@ export class CalendarComponent implements OnInit {
     if (records === null) {
       return null;
     }
-    let result = records.find(elem => new Date(elem.date).getMonth() === mouth && new Date(elem.date).getDay() === date);
+    let result = records.find(elem => new Date(elem.date).getMonth() === mouth && new Date(elem.date).getDate() === date);
     if (result != null) {
       console.log(result.result);
       return result.result;
@@ -131,10 +132,31 @@ export class CalendarComponent implements OnInit {
     this.journalService.saveRecords(this.changeRecords).subscribe({
       next: data => {
         console.log(data);
+        this.updateRecords();
       },
       error: err => {
         this.error = true;
       }
     })
+  }
+
+  private updateRecords() {
+    this.journalService.getRecordsInJournal(this.group.id, this.subject.id).subscribe({
+      next: (data) => {
+        let dataMap = new Map(Object.entries(data));
+        let record = new Map<number, Record[]>();
+        dataMap.forEach(function (value, key, map) {
+          let num = parseInt(key);
+          let recordsArray: Record[] = map.get(key);
+          record.set(num, recordsArray);
+        });
+        this.records = record;
+        console.log("Список оценок с БД:");
+        console.log(this.records);
+      },
+      error: err => {
+        this.error = true;
+      }
+    });
   }
 }

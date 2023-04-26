@@ -1,14 +1,21 @@
 <div class="container">
-  <h3>Классы</h3>
-  <ul class="groups">
-    <li *ngFor="let group of groups">
-      <button [class.selected]="group === selectedGroup" type="button" routerLink="/groups/{{ group.id }}">
-        <span class="badge">{{group.classNumber}}</span>
-        <span class="name">{{group.classLetter}}</span>
-      </button>
-      <input type="button" value="Удалить" (click)="deleteGroup(group.id)" class="btn btn-outline-danger btn-large"
-             mdbRipple rippleColor="dark"/>
-    </li>
-  </ul>
-  <input type="button" value="Добавить" class="btn btn-add" (click)="openModalAddNew()"/>
+  <div *ngIf="!groups; else elseBlock">Я загрузка</div>
+  <div *ngIf="err">Я сломался</div>
+  <ng-template #elseBlock>
+    <h3>Классы</h3>
+    <div *ngIf="groupsEmpty()">Учебные классы отсутствуют</div>
+    <div class="list-group list-group-light">
+      <div *ngFor="let group of groups"
+           class="list-group-item list-group-item-action px-3 border-0"
+           aria-current="true"
+      >
+        <h5 routerLink="/groups/{{ group.id }}">
+          {{group.classNumber}} {{group.classLetter}}
+        </h5>
+        <input type="button" value="Удалить" (click)="deleteGroup(group.id)" class="btn btn-outline-danger btn-large"
+               mdbRipple rippleColor="dark"/>
+      </div>
+    </div>
+    <input type="button" value="Добавить" class="btn btn-add" (click)="openModalAddNew()"/>
+  </ng-template>
 </div>
