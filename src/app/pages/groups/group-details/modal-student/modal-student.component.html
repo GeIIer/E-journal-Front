@@ -29,19 +29,19 @@
       [(ngModel)]="email"
     />
   </div>
-<!--  <div class="input-group mb-3">-->
-<!--    <div class="">-->
-<!--      <label>Класс</label>-->
-<!--      <select-->
-<!--        class="form-select"-->
-<!--        aria-label="Default select example"-->
-<!--        [(ngModel)]="selectedGroup"-->
-<!--      >-->
-<!--        <option *ngFor="let group of groups"-->
-<!--                [ngValue]="group">{{group.classNumber}} {{group.classLetter}}</option>-->
-<!--      </select>-->
-<!--    </div>-->
-<!--  </div>-->
+  <div *ngIf="change" class="input-group mb-3">
+    <div class="">
+      <label>Класс</label>
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        [(ngModel)]="selectedGroup"
+      >
+        <option *ngFor="let group of groups"
+                [ngValue]="group">{{group.classNumber}} {{group.classLetter}}</option>
+      </select>
+    </div>
+  </div>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" (click)="close()">

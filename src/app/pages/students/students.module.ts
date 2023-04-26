@@ -5,6 +5,10 @@ import {RouterModule} from "@angular/router";
 import {JournalComponent} from "../journal/journal.component";
 import {StudentService} from "../../services/student.service";
 import {GroupService} from "../../services/group.service";
+import {MdbModalModule} from "mdb-angular-ui-kit/modal";
+import {MdbFormsModule} from "mdb-angular-ui-kit/forms";
+import {MdbRippleModule} from "mdb-angular-ui-kit/ripple";
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -20,10 +24,14 @@ import {GroupService} from "../../services/group.service";
         component: StudentsComponent,
       },
     ]),
+    FormsModule,
+    MdbModalModule,
+    MdbFormsModule,
+    MdbRippleModule
   ],
   providers: [
     StudentService,
-    GroupService
+    GroupService,
   ]
 })
 export class StudentsModule { }

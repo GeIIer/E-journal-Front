@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {MdbModalRef} from "mdb-angular-ui-kit/modal";
+import {Group} from "../../../../core/models/group";
 
 @Component({
   selector: 'app-modal-student',
@@ -7,9 +8,13 @@ import {MdbModalRef} from "mdb-angular-ui-kit/modal";
   styleUrls: ['./modal-student.component.scss']
 })
 export class ModalStudentComponent {
+  title!: string;
   firstname!: string;
   lastname!: string;
   email!: string;
+  change: boolean = false;
+  selectedGroup: any;
+  groups!: Group[];
   constructor(public modalRef: MdbModalRef<ModalStudentComponent>) {
   }
 

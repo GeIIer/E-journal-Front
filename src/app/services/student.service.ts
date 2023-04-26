@@ -31,4 +31,20 @@ export class StudentService {
   deleteStudent(id: number) {
     return this.http.delete(this.studentUrl + "/" + id);
   }
+
+  putStudent(
+    id: number,
+    firstname: string,
+    lastname: string,
+    email: string,
+    groupId: number,
+  ) {
+    return this.http.post<Student>(this.studentUrl, {
+      id: id,
+      firstname: firstname,
+      lastname: lastname,
+      email: email,
+      groupId: groupId,
+    }, httpOptions);
+  }
 }

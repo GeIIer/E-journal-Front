@@ -23,7 +23,7 @@ export class GroupDetailsComponent implements OnInit {
               private route: ActivatedRoute,
               private studentService: StudentService,
               private teacherService: TeacherService,
-              private groupService:GroupService,
+              private groupService: GroupService,
               private modalService: MdbModalService) {
   }
 
@@ -60,10 +60,12 @@ export class GroupDetailsComponent implements OnInit {
       next: groups => {
         this.modalRef = this.modalService.open(ModalStudentComponent, {
           data: {
+            title: "Добавить ученика",
             groups: groups,
           }
         });
         this.modalRef.onClose.subscribe(data => {
+          if (data.firstname != null && data.lastname != null && data.email != null)
           this.studentService.createStudent(data.firstname, data.lastname, data.email, groupId).subscribe({
             next: student => {
               this.group.listStudents.push(student);

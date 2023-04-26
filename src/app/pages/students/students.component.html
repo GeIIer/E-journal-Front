@@ -4,23 +4,29 @@
   <ng-template #elseBlock>
     <div class="container-profile-name">
       <header class="profile-name">
-        <h2>Ученик</h2>
-        <h3>
-          <strong>{{ student.lastname }} {{ student.firstname }}</strong>
-        </h3>
+        <div class="profile-name-card">
+          <h3>
+            <strong>{{ student.lastname }} {{ student.firstname }}</strong>
+          </h3>
+          <div class="button-card">
+            <button type="button" class="btn btn-secondary" (click)="openModalChange(student)">Редактировать </button>
+          </div>
+        </div>
       </header>
       <div class="email">
         <span class="gray"> Класс: </span>
-        <span class="nowrap">{{ group.classNumber }}{{ group.classLetter }}</span>
+        <span class="nowrap">{{ group.classNumber }} {{ group.classLetter }}</span>
         <br>
         <span class="gray"> Руководитель: </span>
-        <span class="nowrap">{{ group.teacher.lastname }}{{ group.teacher.firstname }}</span>
+        <span class="nowrap">{{ group.teacher.lastname }} {{ group.teacher.firstname }}</span>
       </div>
       <div class="info-container">
         <span class="gray"> Email: </span>
         <span class="nowrap">{{ student.email }}</span> <br>
       </div>
-      <button (click)="goBack()">Назад</button>
+      <div class="container-button">
+        <input type="button" value="Назать" class="btn btn-add" (click)="goBack()"/>
+      </div>
     </div>
   </ng-template>
 </div>
