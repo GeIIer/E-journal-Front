@@ -1,5 +1,5 @@
 <div class="container">
-  <div *ngIf="!student; else elseBlock">Я загрузка</div>
+  <div *ngIf="!group; else elseBlock">Я загрузка</div>
   <div *ngIf="errors;">Я сломался</div>
   <ng-template #elseBlock>
     <div class="container-profile-name">
@@ -11,7 +11,10 @@
       </header>
       <div class="email">
         <span class="gray"> Класс: </span>
-        <span class="nowrap">{{ student.groupId }}</span>
+        <span class="nowrap">{{ group.classNumber }}{{ group.classLetter }}</span>
+        <br>
+        <span class="gray"> Руководитель: </span>
+        <span class="nowrap">{{ group.teacher.lastname }}{{ group.teacher.firstname }}</span>
       </div>
       <div class="info-container">
         <span class="gray"> Email: </span>

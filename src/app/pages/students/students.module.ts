@@ -4,6 +4,7 @@ import { StudentsComponent } from './students.component';
 import {RouterModule} from "@angular/router";
 import {JournalComponent} from "../journal/journal.component";
 import {StudentService} from "../../services/student.service";
+import {GroupService} from "../../services/group.service";
 
 
 
@@ -21,7 +22,8 @@ import {StudentService} from "../../services/student.service";
     ]),
   ],
   providers: [
-    StudentService
+    StudentService,
+    GroupService
   ]
 })
 export class StudentsModule { }
