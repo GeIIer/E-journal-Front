@@ -1,18 +1,23 @@
 <div class="container">
-  <h2>Предметы</h2>
-  <div class="card-subjects">
-    <ul class="subjects">
-      <li *ngFor="let subject of subjects">
-        <button [class.selected]="subject === selectedSubject" type="button">
-          <span class="badge">{{subject.subjectName}}</span>
-          <span class="name">Учебные часы: {{subject.studyHours}}</span>
-          <span class="name">Контрольные точки: {{subject.checkpoints}}</span>
-        </button>
-        <input type="button" value="Изменить" (click)="openModalChange(subject)" class="btn btn-change"/>
-        <input type="button" value="Удалить" (click)="deleteSubject(subject.id)" class="btn btn-outline-danger"
-               mdbRipple rippleColor="dark"/>
-      </li>
-    </ul>
-  </div>
-  <input type="button" value="Добавить" class="btn btn-add" (click)="openModalAddNew()"/>
+  <div *ngIf="!subjects; else elseBlock">Я загрузка</div>
+  <div *ngIf="err">Я сломался</div>
+  <ng-template #elseBlock>
+    <h2>Предметы</h2>
+    <div *ngIf="subjectsEmpty()">Учебные классы отсутствуют</div>
+    <div class="card-subjects">
+      <ul class="subjects">
+        <li *ngFor="let subject of subjects">
+          <button [class.selected]="subject === selectedSubject" type="button">
+            <span class="badge">{{subject.subjectName}}</span>
+            <span class="name">Учебные часы: {{subject.studyHours}}</span>
+            <span class="name">Контрольные точки: {{subject.checkpoints}}</span>
+          </button>
+          <input type="button" value="Изменить" (click)="openModalChange(subject)" class="btn btn-change"/>
+          <input type="button" value="Удалить" (click)="deleteSubject(subject.id)" class="btn btn-outline-danger"
+                 mdbRipple rippleColor="dark"/>
+        </li>
+      </ul>
+    </div>
+    <input type="button" value="Добавить" class="btn btn-add" (click)="openModalAddNew()"/>
+  </ng-template>
 </div>

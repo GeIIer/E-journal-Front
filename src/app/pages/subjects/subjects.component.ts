@@ -33,14 +33,6 @@ export class SubjectsComponent implements OnInit {
     });
   }
 
-  createSubject(subjectName: string, studyHours: number, checkpoints: number): void {
-    this.subjectService.createSubject(subjectName, studyHours, checkpoints).subscribe({
-      next: value => {
-        console.log(value);
-      }
-    })
-  }
-
   deleteSubject(id: number) {
     this.subjectService.deleteSubject(id).subscribe({
       next: data => {
@@ -94,5 +86,9 @@ export class SubjectsComponent implements OnInit {
         }
       );
     });
+  }
+
+  subjectsEmpty() {
+    return (this.subjects.length === 0);
   }
 }
