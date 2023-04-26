@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Day} from "./calendar-day";
 import {CalendarCreator} from "./calendar-creator";
 import {Student} from "../../../core/models/student";
@@ -25,14 +25,14 @@ export class CalendarComponent implements OnInit {
   @Input() students!: Student[];
   @Input() records!: Map<number, Record[]>;
 
-  changeRecords: Record[] = [];
+  @ViewChild('inputElement') inputElement: any;
 
+  changeRecords: Record[] = [];
   change: boolean = false;
-  temp: string = "Помогите";
   private error: boolean = false;
 
-  constructor(public calendarCreator: CalendarCreator, private journalService:JournalService) {
-
+  constructor(public calendarCreator: CalendarCreator,
+              private journalService: JournalService ) {
   }
 
   ngOnInit(): void {
@@ -76,11 +76,8 @@ export class CalendarComponent implements OnInit {
   }
 
   public getListResultsByStudent(id: number): Record[] | null {
-    //let records = data.find(elem => elem.studentId === id);
-    console.log(this.records);
     let results = this.records?.get(id);
      if (results != null) {
-       console.log(results);
        return results;
      }
     return [];
@@ -92,7 +89,6 @@ export class CalendarComponent implements OnInit {
     }
     let result = records.find(elem => new Date(elem.date).getMonth() === mouth && new Date(elem.date).getDate() === date);
     if (result != null) {
-      console.log(result.result);
       return result.result;
     }
     return null;
@@ -115,15 +111,26 @@ export class CalendarComponent implements OnInit {
     let date = new Date(year, monthIndex, day);
     console.log(date);
     console.log(student.id, date, this.subject, result);
-    let record: Record = {
-      id: null,
-      student: student.id,
-      date: date,
-      subject: this.subject.id.toString(),
-      result: result!.toString()
+    if (result === "") {
+
+    } else {
+      let record: Record = {
+        id: null,
+        student: student.id,
+        date: date,
+        subject: this.subject.id.toString(),
+        result: result!.toString()
+      }
+      this.changeRecords.push(record);
+      this.change = true;
     }
-    this.changeRecords.push(record);
-    this.change = true;
+  }
+
+  reset() {
+    this.inputElement.nativeElement.value = "";
+    this.change = false;
+    this.changeRecords = [];
+    this.updateRecords();
   }
 
   save() {
@@ -132,6 +139,8 @@ export class CalendarComponent implements OnInit {
     this.journalService.saveRecords(this.changeRecords).subscribe({
       next: data => {
         console.log(data);
+        this.change = false;
+        this.changeRecords = [];
         this.updateRecords();
       },
       error: err => {

@@ -13,7 +13,7 @@ export class ModalStudentComponent {
   lastname!: string;
   email!: string;
   change: boolean = false;
-  selectedGroup: any;
+  selectedGroup!: Group;
   groups!: Group[];
   constructor(public modalRef: MdbModalRef<ModalStudentComponent>) {
   }
@@ -23,12 +23,23 @@ export class ModalStudentComponent {
   }
 
   save() {
-    let newStudent = {
-      firstname: this.firstname,
-      lastname: this.lastname,
-      email: this.email,
+    if (this.change) {
+      let newStudent = {
+        firstname: this.firstname,
+        lastname: this.lastname,
+        email: this.email,
+        groupId: this.selectedGroup.id
+      }
+      this.modalRef.close(newStudent);
     }
-    this.modalRef.close(newStudent);
+    else {
+      let newStudent = {
+        firstname: this.firstname,
+        lastname: this.lastname,
+        email: this.email,
+      }
+      this.modalRef.close(newStudent);
+    }
   }
 
   checkNull() {

@@ -6,23 +6,6 @@ h1 {
   color: #4DC3FA;
 }
 
-h2 {
-  font-size: 1em;
-  font-weight: 300;
-  text-align: center;
-  display: block;
-  line-height: 1em;
-  padding-bottom: 2em;
-  color: #FB667A;
-}
-
-h2 a {
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #FB667A;
-  text-decoration: none;
-}
-
 .container th h1 {
   font-weight: bold;
   font-size: 1em;
@@ -104,6 +87,6 @@ h2 a {
 .btn-save {
   cursor: pointer;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 1rem
 }

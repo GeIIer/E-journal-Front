@@ -6,7 +6,6 @@ import {GroupService} from "../../services/group.service";
 import {Group} from "../../core/models/group";
 import {MdbModalRef, MdbModalService} from "mdb-angular-ui-kit/modal";
 import {ModalStudentComponent} from "../groups/group-details/modal-student/modal-student.component";
-import {ModalGroupsComponent} from "../groups/modal-groups/modal-groups.component";
 
 @Component({
   selector: 'app-students',
@@ -53,40 +52,43 @@ export class StudentsComponent implements OnInit {
   }
 
   openModalChange(student: Student) {
-    this.modalRef = this.modalService.open(ModalStudentComponent, {
-      data: {
-        title: "Редактирование ученика",
-        firstname: student.firstname,
-        lastname: student.lastname,
-        email: student.email,
-        change: true,
+    this.groupService.getAllGroups().subscribe({
+      next: groups => {
+        this.modalRef = this.modalService.open(ModalStudentComponent, {
+          data: {
+            title: "Редактирование ученика",
+            firstname: student.firstname,
+            lastname: student.lastname,
+            email: student.email,
+            groups: groups,
+            change: true,
+          }
+        });
+        this.modalRef.onClose.subscribe(data => {
+          if (data) {
+            this.studentService.putStudent(
+              student.id,
+              data.firstname,
+              data.lastname,
+              data.email,
+              data.groupId
+            ).subscribe({
+              next: student => {
+                console.log(student);
+                this.student = student;
+                this.group = groups.find(obj => obj.id == data.groupId)!;
+              },
+              error: err1 => {
+                console.log(this.student);
+                this.errors = true;
+              }
+            });
+          }
+        });
+      },
+      error: err => {
+        this.errors = true;
       }
-    });
-    this.modalRef.onClose.subscribe(data => {
-      this.studentService.putStudent(
-        student.id,
-        data.firstname,
-        data.lastname,
-        data.email,
-        data.group
-      ).subscribe({
-        next: student => {
-          console.log(student);
-          this.student = student;
-          this.groupService.getAllGroups().subscribe({
-            next: groups => {
-              this.group = groups.find(obj => obj.id == data.groupId)!;
-            },
-            error: err => {
-              this.errors = true;
-            }
-          });
-        },
-        error: err1 => {
-          console.log(this.student);
-          this.errors = true;
-        }
-      });
     });
   }
 }

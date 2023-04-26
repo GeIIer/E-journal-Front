@@ -1,8 +1,18 @@
 <div class="cal-body">
   <div class="cal-mouth">
-    <button class="btn-cal-btn" (click)="onPreviousMonth()"> <</button>
-    <strong> {{ calendarCreator.getMonthName(monthNumber) }} &nbsp; {{ year }} </strong>
-    <button class="btn-cal-btn" (click)="onNextMonth()"> ></button>
+    <button
+      type="button"
+      class="btn btn-outline-info btn-rounded"
+      data-mdb-toggle="button"
+      (click)="onPreviousMonth()"> <
+    </button>
+    <h3> {{ calendarCreator.getMonthName(monthNumber) }} &nbsp; {{ year }} </h3>
+    <button
+      type="button"
+      class="btn btn-outline-info btn-rounded"
+      data-mdb-toggle="button"
+      (click)="onNextMonth()"> >
+    </button>
   </div>
 
   <br>
@@ -27,7 +37,6 @@
           <td class="body" *ngFor="let day of getDays()">
             <input class="input"
                    #inputElement
-                   name="record-{{student.id}}-{{day}}-{{monthNumber}}"
                    maxlength="1"
                    type="text"
                    value="{{getResult(ListResults, day, monthNumber)}}"
@@ -39,7 +48,10 @@
     </table>
   </div>
   <div class="btn-save">
-    <button (click)="save()" >
+    <button type="button" class="btn btn-primary" [disabled]="!change" (click)="reset()">
+      Очистить
+    </button>
+    <button type="button" class="btn btn-primary" [disabled]="!change" (click)="save()">
       Сохранить
     </button>
   </div>

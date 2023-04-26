@@ -65,13 +65,14 @@ export class GroupDetailsComponent implements OnInit {
           }
         });
         this.modalRef.onClose.subscribe(data => {
-          if (data.firstname != null && data.lastname != null && data.email != null)
-          this.studentService.createStudent(data.firstname, data.lastname, data.email, groupId).subscribe({
-            next: student => {
-              this.group.listStudents.push(student);
-              this.group.listStudents = this.group.listStudents.sort((a, b) => this.compareStudent(a, b));
-            }
-          });
+          if (data) {
+            this.studentService.createStudent(data.firstname, data.lastname, data.email, groupId).subscribe({
+              next: student => {
+                this.group.listStudents.push(student);
+                this.group.listStudents = this.group.listStudents.sort((a, b) => this.compareStudent(a, b));
+              }
+            });
+          }
         });
       },
       error: err => {
@@ -109,16 +110,18 @@ export class GroupDetailsComponent implements OnInit {
           }
         });
         this.modalClassRef.onClose.subscribe(data => {
-          this.groupService.putGroup(group.id, data.classNumber, data.classLetter, data.teacher, group.listStudents).subscribe({
-            next: group => {
-              console.log(group);
-              this.group = group;
-            },
-            error: err1 => {
-              console.log(this.group);
-              this.errors = true;
-            }
-          });
+          if (data) {
+            this.groupService.putGroup(group.id, data.classNumber, data.classLetter, data.teacher, group.listStudents).subscribe({
+              next: group => {
+                console.log(group);
+                this.group = group;
+              },
+              error: err1 => {
+                console.log(this.group);
+                this.errors = true;
+              }
+            });
+          }
         });
       },
       error: err1 => {
