@@ -3,7 +3,7 @@
   <div *ngIf="err">Я сломался</div>
   <ng-template #elseBlock>
     <h2>Предметы</h2>
-    <div *ngIf="subjectsEmpty()">Учебные классы отсутствуют</div>
+    <div *ngIf="subjectsEmpty()">Предметы отсутствуют</div>
     <div class="card-subjects">
       <ul class="subjects">
         <li *ngFor="let subject of subjects">
