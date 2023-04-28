@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {Teacher} from "../core/models/teacher";
 import {Subject} from "../core/models/subject";
+import {environment} from "../../environments/environment";
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -14,7 +15,7 @@ export class TeacherService {
   constructor(private http: HttpClient, private router: Router) {
   }
 
-  private teacherUrl = 'http://localhost:8080/api/teachers';
+  private teacherUrl = environment.apiUrl + "/api/teachers";
 
   public getAllTeachers(): Observable<Teacher[]> {
     return this.http.get<Teacher[]>(this.teacherUrl + "/all");

@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {Group} from "../core/models/group";
 import {Teacher} from "../core/models/teacher";
 import {Student} from "../core/models/student";
+import {environment} from "../../environments/environment";
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -13,7 +14,7 @@ const httpOptions = {
 export class GroupService {
   constructor(private http: HttpClient, private router: Router) {
   }
-  private groupUrl = 'http://localhost:8080/api/groups';
+  private groupUrl = environment.apiUrl + "/api/groups";
   public getAllGroups() {
     return this.http.get<Group[]>(this.groupUrl + "/all");
   }

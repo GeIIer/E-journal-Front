@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {Student} from "../core/models/student";
 import {GroupsAndSubjects} from "../core/models/groupsAndSubjects";
 import {Record} from "../core/models/record";
+import {environment} from "../../environments/environment";
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -15,9 +16,9 @@ export class JournalService {
   constructor(private http: HttpClient, private router: Router) {
   }
 
-  private studentUrl = 'http://localhost:8080/api/students';
-  private groupUrl = 'http://localhost:8080/api/groups';
-  private recordUrl = 'http://localhost:8080/api/records';
+  private studentUrl = environment.apiUrl + "/api/students";
+  private groupUrl = environment.apiUrl + "/api/groups";
+  private recordUrl = environment.apiUrl + "/api/records";
 
   public getStudentsByGroup(groupId: number) {
     return this.http.get<Student[]>(this.studentUrl + "/all/" + groupId);
