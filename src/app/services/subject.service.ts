@@ -17,7 +17,7 @@ export class SubjectService {
   private subjectUrl = environment.apiUrl + "/api/subjects";
 
   public getAllSubjects(): Observable<Subject[]> {
-    return this.http.get<Subject[]>(this.subjectUrl + "/all");
+    return this.http.get<Subject[]>(this.subjectUrl);
   }
 
   public createSubject(subjectName: string, studyHours: number, checkpoints: number): Observable<any> {

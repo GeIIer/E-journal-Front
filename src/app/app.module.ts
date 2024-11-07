@@ -9,6 +9,7 @@ import { MenuModule } from './shared/menu/menu.module';
 import {BodyModule} from "./shared/body/body.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AuthModule} from "./pages/auth/auth.module";
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BodyModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    AuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,2 +1,9 @@
-<app-menu (onToggleSideNav)="onToggleSideNav($event)"></app-menu>
-<app-body [collapsed]="isSideNavCollapsed" [screenWidth]="screenWidth"></app-body>
+<div id="app">
+  <div *ngIf="!isLoggedIn; else elseBlock">
+  <app-auth></app-auth>
+  </div>
+  <ng-template #elseBlock>
+    <app-menu (onToggleSideNav)="onToggleSideNav($event)"></app-menu>
+    <app-body [collapsed]="isSideNavCollapsed" [screenWidth]="screenWidth"></app-body>
+  </ng-template>
+</div>

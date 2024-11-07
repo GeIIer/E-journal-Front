@@ -10,6 +10,11 @@ const routes: Routes = [{
         import('./pages/home/home.module').then((m) => m.HomeModule),
     },
     {
+      path: 'login',
+      loadChildren: () =>
+        import('./pages/auth/auth.module').then((m) => m.AuthModule),
+    },
+    {
       path: 'home',
       loadChildren: () =>
         import('./pages/home/home.module').then((m) => m.HomeModule),

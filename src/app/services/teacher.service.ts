@@ -18,7 +18,7 @@ export class TeacherService {
   private teacherUrl = environment.apiUrl + "/api/teachers";
 
   public getAllTeachers(): Observable<Teacher[]> {
-    return this.http.get<Teacher[]>(this.teacherUrl + "/all");
+    return this.http.get<Teacher[]>(this.teacherUrl);
   }
 
   getTeacherById(teacherId: number) {

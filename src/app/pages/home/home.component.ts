@@ -10,9 +10,10 @@ let index = 0;
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
 
   ngOnInit(): void {
@@ -40,8 +41,7 @@ export class HomeComponent implements OnInit{
       index = 0;
       this.activeSlide(index);
       this.activeDot(index);
-    }
-    else {
+    } else {
       index++;
       this.activeSlide(index);
       this.activeDot(index);
@@ -54,8 +54,7 @@ export class HomeComponent implements OnInit{
       index = slides.length - 1;
       this.activeSlide(index);
       this.activeDot(index);
-    }
-    else {
+    } else {
       index--;
       this.activeSlide(index);
       this.activeDot(index);
@@ -63,7 +62,7 @@ export class HomeComponent implements OnInit{
   }
 
   public changeSlide(n: number) {
-    index=n;
+    index = n;
     this.activeSlide(index);
     this.activeDot(index);
   }

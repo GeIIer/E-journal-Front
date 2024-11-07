@@ -25,7 +25,7 @@ export class JournalService {
   }
 
   public getGroupsAndSubjects() {
-    return this.http.get<GroupsAndSubjects>(this.groupUrl + "/all/subjects");
+    return this.http.get<GroupsAndSubjects>(this.groupUrl + "/subjects");
   }
 
   public getRecordsInJournal(groupId: number, subjectId: number) {

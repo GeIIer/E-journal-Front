@@ -16,7 +16,7 @@ export class GroupService {
   }
   private groupUrl = environment.apiUrl + "/api/groups";
   public getAllGroups() {
-    return this.http.get<Group[]>(this.groupUrl + "/all");
+    return this.http.get<Group[]>(this.groupUrl);
   }
 
   getGroupsById(id: number) {
