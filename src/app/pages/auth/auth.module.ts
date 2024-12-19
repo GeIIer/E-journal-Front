@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthComponent } from './auth.component';
-import { RouterModule } from "@angular/router";
-import {FormsModule} from "@angular/forms";
+import {RouterLink, RouterModule} from "@angular/router";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -20,6 +20,8 @@ import {FormsModule} from "@angular/forms";
       },
     ]),
     FormsModule,
+    ReactiveFormsModule,
+    RouterLink
   ],
   exports: [AuthComponent],
 })

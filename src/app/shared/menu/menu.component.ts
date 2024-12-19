@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { navbarDate } from '../../core/data/nav-data';
+import {AuthService} from "../../services/auth.service";
 
 interface SideNavToggle {
   screenWidth: number;
@@ -12,6 +13,9 @@ interface SideNavToggle {
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
+
+  constructor(private authService: AuthService) {
+  }
 
   ngOnInit(): void {
       this.screenWidth = window.innerWidth;
@@ -37,5 +41,10 @@ export class MenuComponent implements OnInit {
       collapsed: this.collapsed,
       screenWidth: this.screenWidth
     })
+  }
+
+  logout() {
+    this.authService.logout();
+    window.location.reload();
   }
 }

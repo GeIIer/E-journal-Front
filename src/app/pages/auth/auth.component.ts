@@ -1,4 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../../services/auth.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-auth',
@@ -6,19 +9,48 @@ import {Component} from '@angular/core';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent {
-  email: string = '';
-  password: string = '';
+  loginForm: FormGroup;
   errorMessage: string = '';
+  loading: boolean = false;
 
-  onSubmit() {
-    // Здесь вы обычно отправляете данные на сервер аутентификации
-    if (this.email === 'test@example.com' && this.password === 'password123') {
-      console.log('Успешная авторизация');
-      this.errorMessage = '';
-      // Перенаправление или сохранение токена и т.д.
-    } else {
-      this.errorMessage = 'Неверный email или пароль';
-    }
+  @Output('loggingIn') loggingIn = new EventEmitter();
+
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    this.loginForm = this.fb.group({
+      username: ['',],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
   }
 
+  onSubmit(): void {
+    if (this.loginForm.valid) {
+      this.loading = true;
+      this.errorMessage = '';
+
+      const {username, password} = this.loginForm.value;
+
+      this.authService.login(username, password).subscribe({
+        next: () => {
+          this.loggingIn.emit(true);
+          this.router.navigate(['/home'], { relativeTo: this.route })
+            .then(() => console.log('Navigation successful', this.route))
+            .catch(err => console.error('Navigation failed:', err));
+        },
+        error: (error) => {
+          this.errorMessage = error.error.message || 'Произошла ошибка при входе';
+          this.loading = false;
+        },
+        complete: () => {
+          this.loading = false;
+        }
+      });
+    } else {
+      this.loginForm.markAllAsTouched();
+    }
+  }
 }

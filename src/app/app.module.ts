@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import 'boxicons';
@@ -10,6 +10,8 @@ import {BodyModule} from "./shared/body/body.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {AuthModule} from "./pages/auth/auth.module";
+import {CookieService} from "ngx-cookie-service";
+import {AuthInterceptor} from "./services/auth.interseptor";
 
 @NgModule({
   declarations: [
@@ -25,7 +27,11 @@ import {AuthModule} from "./pages/auth/auth.module";
     BrowserAnimationsModule,
     AuthModule,
   ],
-  providers: [],
+  providers: [CookieService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true,
+  }],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

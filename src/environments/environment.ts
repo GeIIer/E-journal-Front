@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:8080',
-  authUrl: 'http://localhost:8081',
+  apiUrl: '/api/v1/journal',
+  authUrl: '/api/v1/auth',
 };

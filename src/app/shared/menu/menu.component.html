@@ -13,9 +13,13 @@
          [routerLinkActiveOptions]="{exact: true}"
       >
         <i class="sidenav-link-icon" [class]="data.icon"></i>
-        <span class="sidenav-link-text" *ngIf="collapsed">{{data.label}}</span>
+        <span class="sidenav-link-text" *ngIf="collapsed">{{ data.label }}</span>
       </a>
     </li>
+    <button class="sidenav-nav-item logout-button" (click)="logout()">
+      <i class="sidenav-link-icon" [class]="'bx bxs-exit'"></i>
+      <span class="sidenav-link-text" *ngIf="collapsed">Выход</span>
+    </button>
   </ul>
 </div>
 

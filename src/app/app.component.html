@@ -1,6 +1,6 @@
 <div id="app">
   <div *ngIf="!isLoggedIn; else elseBlock">
-  <app-auth></app-auth>
+  <app-auth (loggingIn)="isLoggedIn = true"></app-auth>
   </div>
   <ng-template #elseBlock>
     <app-menu (onToggleSideNav)="onToggleSideNav($event)"></app-menu>

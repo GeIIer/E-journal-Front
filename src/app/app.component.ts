@@ -1,6 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "./services/auth.service";
-import {StorageService} from "./services/storage.service";
 
 
 interface SideNavToggle {
@@ -13,7 +12,7 @@ interface SideNavToggle {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'ElectronicJournal';
 
   isSideNavCollapsed = false;
@@ -24,25 +23,26 @@ export class AppComponent {
   showAdminBoard = false;
   username?: string;
 
-  constructor(private storageService: StorageService, private authService: AuthService) {
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.isLoggedIn = this.storageService.isLoggedIn();
+    this.isLoggedIn = this.authService.isAuthenticated();
+    console.log(this.isLoggedIn)
+    console.log(this.authService.isAuthenticated());
 
     if (this.isLoggedIn) {
-      const user = this.storageService.getUser();
-      this.roles = user.roles;
+      const user = this.authService.getToken();
+      this.roles = ['ROLE_ADMIN'];
 
       this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
 
-      this.username = user.username;
+      this.username = 'test';
     }
   }
 
   onToggleSideNav(data: SideNavToggle): void {
     this.screenWidth = data.screenWidth;
     this.isSideNavCollapsed = data.collapsed;
-
   }
 }

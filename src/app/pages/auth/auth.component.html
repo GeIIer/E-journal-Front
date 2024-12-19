@@ -1,19 +1,51 @@
-<div class="container">
-  <div class="auth-container">
-    <h2>Авторизация</h2>
-    <form (ngSubmit)="onSubmit()">
+<!-- login.component.html -->
+<div class="login-container">
+  <div class="login-card">
+    <h2>Вход в систему</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
       <div class="form-group">
-        <label>Логин</label>
-        <input type="email" id="email" required [(ngModel)]="email" name="email"/>
+        <label for="username">Логин</label>
+        <input
+          id="username"
+          type="email"
+          formControlName="username"
+          class="form-control"
+          [class.is-invalid]="loginForm.get('username')?.invalid && loginForm.get('username')?.touched"
+        >
+        <div class="invalid-feedback" *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+          <span *ngIf="loginForm.get('username')?.errors?.['required']">Email обязателен</span>
+          <span *ngIf="loginForm.get('username')?.errors?.['email']">Введите корректный email</span>
+        </div>
       </div>
+
       <div class="form-group">
         <label for="password">Пароль</label>
-        <input type="password" id="password" required [(ngModel)]="password" name="password"/>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          class="form-control"
+          [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+        >
+        <div class="invalid-feedback" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          <span *ngIf="loginForm.get('password')?.errors?.['required']">Пароль обязателен</span>
+          <span *ngIf="loginForm.get('password')?.errors?.['minlength']">Минимальная длина пароля 6 символов</span>
+        </div>
       </div>
-      <div *ngIf="errorMessage" class="error-message">
+
+      <div class="error-message" *ngIf="errorMessage">
         {{ errorMessage }}
       </div>
-      <button type="submit">Войти</button>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="loginForm.invalid || loading"
+      >
+        <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+        Войти
+      </button>
     </form>
   </div>
 </div>
