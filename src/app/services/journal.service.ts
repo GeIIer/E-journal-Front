@@ -21,7 +21,7 @@ export class JournalService {
   private recordUrl = environment.apiUrl + "/api/records";
 
   public getStudentsByGroup(groupId: number) {
-    return this.http.get<Student[]>(this.studentUrl + "/all/" + groupId);
+    return this.http.get<Student[]>(this.studentUrl + "/group/" + groupId);
   }
 
   public getGroupsAndSubjects() {
