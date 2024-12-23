@@ -36,6 +36,6 @@ export class JournalService {
   }
 
   public saveRecords(records: Record[]) {
-    return this.http.post(this.recordUrl, records, httpOptions);
+    return this.http.post(this.recordUrl, {records: records}, httpOptions);
   }
 }
